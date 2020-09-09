@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO implements DAO {
-    private String jdbcUrl = "jdbc:mysql://localhost:3306/testmodule3?useSSL=false";
+    private String jdbcUrl = "jdbc:mysql://localhost:3306/module3?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "Thanh1996";
 
@@ -18,7 +18,7 @@ public class ProductDAO implements DAO {
     private static final String SELECT_PRODUCT_BY_ID = "select * from product where id = ?;";
     private static final String SELECT_ALL_PRODUCTS = "select * from product;";
     private static final String DELETE_PRODUCT_SQL = "delete from product where id =?;";
-    private static final String UPDATE_PRODUCT_SQL = "update product set name =?, price =?, quantity =?, color =?, describes =?, category_id =?;";
+    private static final String UPDATE_PRODUCT_SQL = "update product set name =?, price =?, quantity =?, color =?, describes =?, category =?;";
     private static final String SEARCH_PRODUCT_BY_NAME = "select * from product where name like ?;";
     private static final String SELECT_ALL_CATEGORIES = "select * from category";
 
@@ -51,8 +51,8 @@ public class ProductDAO implements DAO {
                 int quantity = rs.getInt("quantity");
                 String color = rs.getString("color");
                 String describes = rs.getString("describes");
-                int category_id = rs.getInt("category_id");
-                product = new Product(id, name, price, quantity, color, describes, category_id);
+                String category= rs.getString("category");
+                product = new Product(id, name, price, quantity, color, describes, category);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,8 +75,8 @@ public class ProductDAO implements DAO {
                 int quantity = rs.getInt("quantity");
                 String color = rs.getString("color");
                 String describes = rs.getString("describes");
-                int category_id = rs.getInt("category_id");
-                products.add(new Product(id, name, price, quantity, color, describes, category_id));
+                String category = rs.getString("category");
+                products.add(new Product(id, name, price, quantity, color, describes, category));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class ProductDAO implements DAO {
             preparedStatement.setInt(3, product.getQuantity());
             preparedStatement.setString(4, product.getColor());
             preparedStatement.setString(5, product.getDescribes());
-            preparedStatement.setInt(6, product.getCategory());
+            preparedStatement.setString(6, product.getCategory());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -121,7 +121,7 @@ public class ProductDAO implements DAO {
             preparedStatement.setInt(3, product.getQuantity());
             preparedStatement.setString(4, product.getColor());
             preparedStatement.setString(5, product.getDescribes());
-            preparedStatement.setInt(6, product.getCategory());
+            preparedStatement.setString(6, product.getCategory());
             preparedStatement.setInt(7, product.getId());
 
             rowUpdated = preparedStatement.executeUpdate() > 0;
@@ -141,8 +141,8 @@ public class ProductDAO implements DAO {
                 int quantity = rs.getInt("quantity");
                 String color = rs.getString("color");
                 String describes = rs.getString("describes");
-                int category_id = rs.getInt("category_id");
-                searchList.add(new Product(id, name, price, quantity, color, describes, category_id));
+                String category = rs.getString("category");
+                searchList.add(new Product(id, name, price, quantity, color, describes, category));
             }
         } catch (SQLException e) {
             e.printStackTrace();

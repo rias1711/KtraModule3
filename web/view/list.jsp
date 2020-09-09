@@ -52,11 +52,11 @@
             <tbody>
             <c:forEach items='${requestScope["listProduct"]}' var="product">
                 <tr>
-                    <td>${product.getName()}</td>
-                    <td>${product.getPrice()}</td>
-                    <td>${product.getQuantity()}</td>
-                    <td>${product.getColor()}</td>
-                    <td>${product.getCategory()}</td>
+                    <td><c:out value="${product.getName()}"/></td>
+                    <td><c:out value="${product.getPrice()}"/></td>
+                    <td><c:out value="${product.getQuantity()}"/></td>
+                    <td><c:out value="${product.getColor()}"/></td>
+                    <td><c:out value="${product.getCategory()}"/></td>
                     <td>
                         <a href="/product?action=editProduct&id=${product.id}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                         |

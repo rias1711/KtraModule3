@@ -54,8 +54,8 @@ public class ProductServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String color = request.getParameter("color");
         String describes = request.getParameter("describes");
-        int category_id = Integer.parseInt(request.getParameter("category_id"));
-        Product product = new Product(id, name, price, quantity, color, describes, category_id);
+        String category = request.getParameter("category");
+        Product product = new Product(id, name, price, quantity, color, describes, category);
         productDAO.updateProduct(product);
         response.sendRedirect("/product");
     }
@@ -118,9 +118,9 @@ public class ProductServlet extends HttpServlet {
         int price = Integer.parseInt(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String color = request.getParameter("color");
-        String description = request.getParameter("description");
-        int category_id = Integer.parseInt(request.getParameter("category_id"));
-        Product product = new Product(name, price, quantity, color, description, category_id);
+        String describes = request.getParameter("description");
+        String category = request.getParameter("category");
+        Product product = new Product(name, price, quantity, color, describes, category);
         productDAO.insertProduct(product);
         response.sendRedirect("/product");
     }

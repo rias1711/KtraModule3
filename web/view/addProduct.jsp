@@ -60,8 +60,7 @@
                     <div class="form-group">
                         <select name="category" id="category">
                             <c:forEach items='${requestScope["categories"]}' var="category">
-                                <option value="${category.getName()}" <c:if test="${category.getName() == product.getCategory()}"> selected </c:if> > ${category.getName()}</option>
-                            </c:forEach>
+                                <option value="${category.getName()}" <c:if test="${category.getName() == product.getCategory()}"> selected </c:if> > ${category.getName()}</option>                            </c:forEach>
                         </select>
                     </div>
                 </td>
